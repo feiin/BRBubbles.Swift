@@ -19,7 +19,7 @@ Swift语言实现Apple Watch主界面圆形图标漂浮效果
 
 ##环境
 
-- Xcode 6 GM 编译通过
+- Xcode 6.1 编译通过
 
 
 
