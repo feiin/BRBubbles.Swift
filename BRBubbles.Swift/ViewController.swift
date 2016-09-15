@@ -17,17 +17,17 @@ class ViewController: UIViewController,UIScrollViewDelegate{
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    private var imagesArray:[UIImageView]?
+    fileprivate var imagesArray:[UIImageView]?
     
-    private var imageNameArray:[String]?
+    fileprivate var imageNameArray:[String]?
     
-    private var viewBarrierOuter:UIView?
+    fileprivate var viewBarrierOuter:UIView?
     
-    private var viewBarrierInner:UIView?
+    fileprivate var viewBarrierInner:UIView?
     
-    private var bigSize:CGSize?
+    fileprivate var bigSize:CGSize?
     
-    private var smallSize:CGSize?
+    fileprivate var smallSize:CGSize?
     
     
   
@@ -37,29 +37,29 @@ class ViewController: UIViewController,UIScrollViewDelegate{
     self.imageNameArray=["icon_one.png","icon_two.png","icon_three.png","icon_four.png","icon_five.png","icon_six.png","icon_eight.png","icon_nine.png","icon_ten.png"]
         
         
-        self.bigSize = CGSizeMake(60, 60);
-        self.smallSize = CGSizeMake(30, 30);
-        var gutter:CGFloat = 20.0;
+        self.bigSize = CGSize(width: 60, height: 60);
+        self.smallSize = CGSize(width: 30, height: 30);
+        let gutter:CGFloat = 20.0;
         
         self.imagesArray = [UIImageView]()
         
         
-        self.scrollView.backgroundColor=UIColor.blackColor()
-        var width = self.view.frame.size.width*2+(gutter*2)
-        var height = self.view.frame.size.height*2+(gutter*3)
-        self.scrollView.contentSize=CGSizeMake(width, height)
-        self.scrollView.contentOffset = CGPointMake(self.scrollView.contentSize.width/2-self.view.frame.size.width/2, self.scrollView.contentSize.height/2-self.view.frame.size.height/2)
+        self.scrollView.backgroundColor=UIColor.black
+        let width = self.view.frame.size.width*2+(gutter*2)
+        let height = self.view.frame.size.height*2+(gutter*3)
+        self.scrollView.contentSize=CGSize(width: width, height: height)
+        self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentSize.width/2-self.view.frame.size.width/2, y: self.scrollView.contentSize.height/2-self.view.frame.size.height/2)
         
         self.scrollView.delegate = self
-        var gap:CGFloat = 5;
+        let gap:CGFloat = 5;
         var xValue:CGFloat = gutter
         var yValue:CGFloat = gutter
         var rowNumber = 1
         
         
-        for (var zz:Int = 0; zz < 162; zz++)
+        for _ in 0 ..< 162
         {
-            var imageOne:UIImageView = UIImageView(frame: CGRectMake(xValue, yValue, 60, 60))
+            let imageOne:UIImageView = UIImageView(frame: CGRect(x: xValue, y: yValue, width: 60, height: 60))
             
             
             self.addImageToScrollView(imageOne)
@@ -80,69 +80,69 @@ class ViewController: UIViewController,UIScrollViewDelegate{
         }
         
         
-        self.viewBarrierOuter = UIView(frame: CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4))
+        self.viewBarrierOuter = UIView(frame: CGRect(x: self.view.frame.size.width/8,y: self.view.frame.size.height/8, width: self.view.frame.size.width-self.view.frame.size.width/4, height: self.view.frame.size.height-self.view.frame.size.height/4))
         
         
-        self.viewBarrierOuter!.backgroundColor = UIColor.redColor()
+        self.viewBarrierOuter!.backgroundColor = UIColor.red
         self.viewBarrierOuter!.alpha = 0.3
-        self.viewBarrierOuter!.hidden = true
+        self.viewBarrierOuter!.isHidden = true
         
-        self.viewBarrierOuter!.userInteractionEnabled = false
+        self.viewBarrierOuter!.isUserInteractionEnabled = false
         self.view.addSubview(self.viewBarrierOuter!)
         
         
-        self.viewBarrierInner = UIView(frame: CGRectMake(self.view.frame.size.width/4,self.view.frame.size.height/4, self.view.frame.size.width-self.view.frame.size.width/2, self.view.frame.size.height-self.view.frame.size.height/2))
+        self.viewBarrierInner = UIView(frame: CGRect(x: self.view.frame.size.width/4,y: self.view.frame.size.height/4, width: self.view.frame.size.width-self.view.frame.size.width/2, height: self.view.frame.size.height-self.view.frame.size.height/2))
         
-        self.viewBarrierInner!.backgroundColor = UIColor.redColor()
+        self.viewBarrierInner!.backgroundColor = UIColor.red
         
         self.viewBarrierInner!.alpha = 0.3;
-        self.viewBarrierInner!.hidden = true;
-        self.viewBarrierInner!.userInteractionEnabled = false
+        self.viewBarrierInner!.isHidden = true;
+        self.viewBarrierInner!.isUserInteractionEnabled = false
         self.view.addSubview(self.viewBarrierInner!)
         
         self.initImageScale()
         
     }
     
-    func addImageToScrollView(image:UIImageView){
+    func addImageToScrollView(_ image:UIImageView){
         
         image.image=UIImage(named: self.imageNameArray![(Int)(arc4random()%9)])
         image.layer.cornerRadius=12
         image.layer.masksToBounds=true
-        image.layer.anchorPoint = CGPointMake(0.5, 0.5)
-        image.contentMode = UIViewContentMode.ScaleAspectFill
+        image.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        image.contentMode = UIViewContentMode.scaleAspectFill
         self.scrollView.addSubview(image)
         self.imagesArray!.append(image)
         
     }
     
    
-   func scrollViewDidScroll(scrollView: UIScrollView)
+   func scrollViewDidScroll(_ scrollView: UIScrollView)
    {
    
-    var container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierOuter!.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrierOuter!.frame.size.height/8), self.viewBarrierOuter!.frame.size.width, self.viewBarrierOuter!.frame.size.height)
-    var containerTwo = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierInner!.frame.size.width/2), scrollView.contentOffset.y+(self.viewBarrierInner!.frame.size.height/2), self.viewBarrierInner!.frame.size.width, self.viewBarrierInner!.frame.size.height)
+    let container = CGRect(x: scrollView.contentOffset.x+(self.viewBarrierOuter!.frame.size.width/8), y: scrollView.contentOffset.y+(self.viewBarrierOuter!.frame.size.height/8), width: self.viewBarrierOuter!.frame.size.width, height: self.viewBarrierOuter!.frame.size.height)
+    let containerTwo = CGRect(x: scrollView.contentOffset.x+(self.viewBarrierInner!.frame.size.width/2), y: scrollView.contentOffset.y+(self.viewBarrierInner!.frame.size.height/2), width: self.viewBarrierInner!.frame.size.width, height: self.viewBarrierInner!.frame.size.height)
     
-    var fetchQ:dispatch_queue_t = dispatch_queue_create("BubbleQueue", nil)
+    let fetchQ:DispatchQueue = DispatchQueue(label: "BubbleQueue", attributes: [])
     
-    dispatch_async(fetchQ,{
+    fetchQ.async(execute: {
         
         for imageView in self.imagesArray!
         {
-            var thePosition:CGRect =  imageView.frame;
+            let thePosition:CGRect =  imageView.frame;
             
             
             
-            if(CGRectIntersectsRect(containerTwo, thePosition))
+            if(containerTwo.intersects(thePosition))
             {
                 if (imageView.tag == notAnimating)
                 {
                     imageView.tag = isAnimating;
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         
-                        UIView.animateWithDuration(0.5, animations: {
-                            imageView.transform = CGAffineTransformMakeScale(1.0,1.0)
+                        UIView.animate(withDuration: 0.5, animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 1.0,y: 1.0)
                             }, completion: {(finished:Bool) in
                                 
                                 imageView.tag = notAnimating;
@@ -150,18 +150,18 @@ class ViewController: UIViewController,UIScrollViewDelegate{
                         
                     })
                 }
-            }else if(CGRectIntersectsRect(container, thePosition))
+            }else if(container.intersects(thePosition))
             {
                 if (imageView.tag == notAnimating)
                 {
                     imageView.tag = isAnimating;
                     
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         
-                        UIView.animateWithDuration(0.5, animations: {
-                            imageView.transform = CGAffineTransformMakeScale(0.7,0.7)
+                        UIView.animate(withDuration: 0.5, animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 0.7,y: 0.7)
                             }, completion: { (finished:Bool) in
                                 
                                 imageView.tag = notAnimating;
@@ -176,11 +176,11 @@ class ViewController: UIViewController,UIScrollViewDelegate{
                 {
                     imageView.tag = isAnimating;
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         
-                        UIView.animateWithDuration(0.5, animations: {
-                            imageView.transform = CGAffineTransformMakeScale(0.5,0.5)
+                        UIView.animate(withDuration: 0.5, animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 0.5,y: 0.5)
                             }, completion: {(finished:Bool) in
                                 
                                 imageView.tag = notAnimating;
@@ -201,23 +201,23 @@ class ViewController: UIViewController,UIScrollViewDelegate{
     func initImageScale()
     {
         
-        var container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierOuter!.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrierOuter!.frame.size.height/8), self.viewBarrierOuter!.frame.size.width, self.viewBarrierOuter!.frame.size.height)
-        var containerTwo = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierInner!.frame.size.width/2), scrollView.contentOffset.y+(self.viewBarrierInner!.frame.size.height/2), self.viewBarrierInner!.frame.size.width, self.viewBarrierInner!.frame.size.height)
+        let container = CGRect(x: scrollView.contentOffset.x+(self.viewBarrierOuter!.frame.size.width/8), y: scrollView.contentOffset.y+(self.viewBarrierOuter!.frame.size.height/8), width: self.viewBarrierOuter!.frame.size.width, height: self.viewBarrierOuter!.frame.size.height)
+        let containerTwo = CGRect(x: scrollView.contentOffset.x+(self.viewBarrierInner!.frame.size.width/2), y: scrollView.contentOffset.y+(self.viewBarrierInner!.frame.size.height/2), width: self.viewBarrierInner!.frame.size.width, height: self.viewBarrierInner!.frame.size.height)
         
         for imageView in self.imagesArray!
         {
-            var thePosition:CGRect =  imageView.frame;
-            if(CGRectIntersectsRect(containerTwo, thePosition))
+            let thePosition:CGRect =  imageView.frame;
+            if(containerTwo.intersects(thePosition))
             {
-                imageView.transform = CGAffineTransformMakeScale(1.0,1.0)
+                imageView.transform = CGAffineTransform(scaleX: 1.0,y: 1.0)
                 
-            }else if(CGRectIntersectsRect(container, thePosition))
+            }else if(container.intersects(thePosition))
             {
-                imageView.transform = CGAffineTransformMakeScale(0.7,0.7)
+                imageView.transform = CGAffineTransform(scaleX: 0.7,y: 0.7)
                 
             }else{
                 
-                imageView.transform = CGAffineTransformMakeScale(0.5,0.5)
+                imageView.transform = CGAffineTransform(scaleX: 0.5,y: 0.5)
                 
             }
             

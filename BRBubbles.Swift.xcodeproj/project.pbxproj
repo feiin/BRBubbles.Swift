@@ -229,9 +229,11 @@
 				TargetAttributes = {
 					FD80B5F219EEC5410054CE44 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
 					};
 					FD80B60719EEC5410054CE44 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = FD80B5F219EEC5410054CE44;
 					};
 				};
@@ -427,6 +429,7 @@
 				INFOPLIST_FILE = BRBubbles.Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -437,6 +440,7 @@
 				INFOPLIST_FILE = BRBubbles.Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -455,6 +459,7 @@
 				INFOPLIST_FILE = BRBubbles.SwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRBubbles.Swift.app/BRBubbles.Swift";
 			};
 			name = Debug;
@@ -470,6 +475,7 @@
 				INFOPLIST_FILE = BRBubbles.SwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRBubbles.Swift.app/BRBubbles.Swift";
 			};
 			name = Release;
